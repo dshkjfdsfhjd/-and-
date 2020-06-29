@@ -1,0 +1,10 @@
+import pandas as pd
+import os
+import matplotlib.pyplot as plt
+import datetime as dt
+
+illness=pd.read_excel(os.path.join('D:\\','登革熱.xlsx'))
+#display(illness.head(10))
+kh='高雄市'
+khillness=illness.iloc[[511,512,530,536,538,543,549,554],:]
+display(khillness.head(10))
