@@ -1,0 +1,28 @@
+import pandas as pd
+import os, json
+import datetime as dt
+
+startdate = '2020/01/01'
+enddate = '2020/03/31'
+
+filename = os.path.join("D:\\", 'C-B0025-001.json')
+
+with open(filename, 'r', encoding='UTF-8') as f:
+    datas = json.loads(f.read())
+
+locations = datas['cwbdata']['resources']['resource']['data']['surfaceObs']['location']
+dict = {}
+#dict['date'] = stationObsTimes[0]['weatherElements']['dataDate']
+for location in locations:
+    dict['date'] = []
+    dict[location['station']['stationName']] = []
+    stationObsTimes = location['stationObsTimes']['stationObsTime']
+    for stationObsTime in stationObsTimes:
+        dict['date'].append(stationObsTime['dataDate'])
+        dict[location['station']['stationName']].append(stationObsTime['weatherElements']['precipitation'])
+
+df = pd.DataFrame(dict)
+df.set_index('date', inplace=True)
+x=df.loc[:, ['高雄']]
+
+display(x)
