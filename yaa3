@@ -1,0 +1,29 @@
+import pandas as pd
+import os, json
+import datetime as dt
+import matplotlib.pyplot as plt
+
+
+
+
+illness=pd.read_excel(os.path.join('D:\\','登革熱.xlsx'))
+#display(illness.head(10))
+
+khillness=illness.iloc[[512,530,536,538,543,549,554],[0,5]]
+display(khillness.head(10))
+#hillness.to_excel(os.path.join('D:\\', '台北登革熱.xlsx'))
+
+rain=pd.read_excel(os.path.join('D:\\','台北雨量.xlsx'))
+#ewrain=rain.iloc[:,[1]]
+
+ill=pd.read_excel(os.path.join('D:\\','台北登革熱.xlsx'))
+newill=ill.iloc[:,[1]]
+display(rain.head(10))
+
+display(newill)
+
+
+
+
+rain.plot.bar()
+newill.plot.bar()
